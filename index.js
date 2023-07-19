@@ -85,11 +85,29 @@ function main(n = '') {
     return text;
 }
 
-setInterval(() => {
-    let date = new Date();
-    let second = date.getSeconds();
-    let min = date.getMinutes();
-    let hour = date.getHours();
-    console.log(main(`${hour}:${min}:${second}`));
+let newText = `12345`;
+let sombre;
+let newImage = main(newText);
+nbr=newImage.split('\n');
 
-} , 1000 );
+let stockage='';
+for(let i=0;i<nbr[0].length;i++){
+    stockage+='@';
+}
+for(let i=0;i<newText.length;i++){
+    stockage+='@';
+}
+
+sombre = newImage.replace(/\t/g,'@@');
+sombre = sombre.replace(/ /g,'@');
+sombre = sombre.replace(/[a-zA-Z0-9]/g,' ');
+sombre = stockage+`\n`+sombre+stockage;
+
+var v =false;
+
+setInterval(()=>{
+    clearConsole();
+    console.log(v?sombre:'\n'+newImage);
+    v=!v;
+},1000);
+
